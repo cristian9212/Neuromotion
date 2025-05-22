@@ -1,7 +1,7 @@
 package com.neuromotion.neuromotion.controller.doc;
 
-import com.neuromotion.neuromotion.dto.PatientDto;
-import com.neuromotion.neuromotion.model.entity.PatientEntity;
+import com.neuromotion.neuromotion.dto.DoctorDto;
+import com.neuromotion.neuromotion.model.entity.DoctorEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "Patient" , description = "API exposed for management all Patient")
-public interface IPatientDoc {
-    @Operation(summary = "create Patient"
+@Tag(name = "Doctor" , description = "API exposed for management all Doctor")
+@RequestMapping("/doctor")
+public interface IDoctorDoc {
+    @Operation(summary = "create Doctor"
             ,description = "This operation is for creating Patient")
     @ApiResponses(value = {
             @ApiResponse(
@@ -35,9 +36,9 @@ public interface IPatientDoc {
             )
     })
     @PostMapping
-    ResponseEntity<PatientEntity> create(@RequestBody PatientDto patient);
+    ResponseEntity<DoctorEntity> create(@RequestBody DoctorDto doctorDto);
 
-    @Operation(summary = "get all Patients"
+    @Operation(summary = "get all Doctor"
             ,description = "This operation is for getting Patient")
     @ApiResponses(value = {
             @ApiResponse(
@@ -57,9 +58,9 @@ public interface IPatientDoc {
             )
     })
     @GetMapping
-    ResponseEntity<List<PatientEntity>> getAll();
+    ResponseEntity<List<DoctorEntity>> getAll();
 
-    @Operation(summary = "get Patient by Id"
+    @Operation(summary = "get Doctor by Id"
             ,description = "This operation is for getting")
     @ApiResponses(value = {
             @ApiResponse(
@@ -79,27 +80,5 @@ public interface IPatientDoc {
             )
     })
     @GetMapping("/{id}")
-    ResponseEntity<PatientEntity> getById(@PathVariable("id")Long id);
-
-    @Operation(summary = "validate login Patient"
-            ,description = "This operation is for getting")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Patient founded",
-                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal Server Error",
-                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "endpoint not found",
-                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)
-            )
-    })
-    @GetMapping("/login")
-    ResponseEntity<PatientEntity> login(@RequestParam("email") String email, @RequestParam("password") String password);
+    ResponseEntity<DoctorEntity> getById(@PathVariable("id")Long id);
 }

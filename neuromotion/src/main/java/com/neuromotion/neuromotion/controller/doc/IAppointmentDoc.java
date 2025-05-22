@@ -1,7 +1,7 @@
 package com.neuromotion.neuromotion.controller.doc;
 
-import com.neuromotion.neuromotion.dto.PatientDto;
-import com.neuromotion.neuromotion.model.entity.PatientEntity;
+import com.neuromotion.neuromotion.dto.AppointmentDto;
+import com.neuromotion.neuromotion.model.entity.AppointmentEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "Patient" , description = "API exposed for management all Patient")
-public interface IPatientDoc {
-    @Operation(summary = "create Patient"
-            ,description = "This operation is for creating Patient")
+@Tag(name = "Appointment" , description = "API exposed for management all Appointment")
+public interface IAppointmentDoc {
+    @Operation(summary = "create Appointment"
+            ,description = "This operation is for creating Appointment")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "201",
-                    description = "Patient Created",
+                    description = "Appointment Created",
                     content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)
             ),
             @ApiResponse(
@@ -35,14 +35,14 @@ public interface IPatientDoc {
             )
     })
     @PostMapping
-    ResponseEntity<PatientEntity> create(@RequestBody PatientDto patient);
+    ResponseEntity<AppointmentEntity> create(@RequestBody AppointmentDto doctorDto);
 
-    @Operation(summary = "get all Patients"
-            ,description = "This operation is for getting Patient")
+    @Operation(summary = "get all Appointment"
+            ,description = "This operation is for getting Appointment")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Patient founded",
+                    description = "Appointment founded",
                     content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)
             ),
             @ApiResponse(
@@ -57,14 +57,14 @@ public interface IPatientDoc {
             )
     })
     @GetMapping
-    ResponseEntity<List<PatientEntity>> getAll();
+    ResponseEntity<List<AppointmentEntity>> getAll();
 
-    @Operation(summary = "get Patient by Id"
+    @Operation(summary = "get Appointment by Id"
             ,description = "This operation is for getting")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Patient founded",
+                    description = "Appointment founded",
                     content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)
             ),
             @ApiResponse(
@@ -79,27 +79,5 @@ public interface IPatientDoc {
             )
     })
     @GetMapping("/{id}")
-    ResponseEntity<PatientEntity> getById(@PathVariable("id")Long id);
-
-    @Operation(summary = "validate login Patient"
-            ,description = "This operation is for getting")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Patient founded",
-                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal Server Error",
-                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "endpoint not found",
-                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)
-            )
-    })
-    @GetMapping("/login")
-    ResponseEntity<PatientEntity> login(@RequestParam("email") String email, @RequestParam("password") String password);
+    ResponseEntity<AppointmentEntity> getById(@PathVariable("id")Long id);
 }
